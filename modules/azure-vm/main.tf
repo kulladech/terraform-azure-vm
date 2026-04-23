@@ -1,3 +1,8 @@
+resource "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
+  location = var.location
+}
+
 # VNet
 resource "azurerm_virtual_network" "vnet" {
   name                = "${var.vm_name}-vnet"
