@@ -8,13 +8,13 @@ resource "azurerm_virtual_network" "vnet" {
   name                = "${var.vm_name}-vnet"
   address_space       = var.address_space
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
 # Subnet
 resource "azurerm_subnet" "subnet" {
   name                 = "${var.vm_name}-subnet"
-  resource_group_name  = var.resource_group_name
+  resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_prefix
 }
@@ -23,7 +23,7 @@ resource "azurerm_subnet" "subnet" {
 resource "azurerm_network_interface" "nic" {
   name                = "${var.vm_name}-nic"
   location            = var.location
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
     name                          = "internal"
@@ -35,7 +35,7 @@ resource "azurerm_network_interface" "nic" {
 # Windows VM
 resource "azurerm_windows_virtual_machine" "vm" {
   name                = var.vm_name
-  resource_group_name = var.resource_group_name
+  resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
   size                = var.vm_size
 
