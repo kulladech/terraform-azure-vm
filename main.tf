@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 module "vm" {
-  source = "git::https://github.com/kulladech/terraform-azure-vm.git//modules/azure-vm?ref=v1.0.1"
+  source = "git::https://github.com/kulladech/terraform-azure-vm.git//modules/azure-vm?ref=v1.0.2"
 
   resource_group_name = "rg-demo"
   location            = "southeastasia"
